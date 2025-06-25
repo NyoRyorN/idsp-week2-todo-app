@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 type Task struct {
@@ -58,9 +59,35 @@ func ListTasks() {
 }
 
 func CompleteTask(id int) {
+	tasks, err := loadTasks()
+	if err == nil {
+		fmt.Println("Error loading tasks:", err)
+		return
+	}
+	tasks = append(tasks, t1)
+	for _, task := range tasks {
+		if task.ID == id {
+			task.Done = true
+			break
+		}
+	}
+	fmt.Println("Task completed:", id)
+	saveTasks(tasks)
 	panic("unimplemented")
 }
 
 func DeleteTask(id int) {
+	var updatedTasks []Task
+	tasks, err := loadTasks()
+	if err == nil {
+		fmt.Println("Error loading tasks:", err)
+		return
+	}
+	for _, task := range tasks {
+		if task.ID != id {
+			updatedTasks = append(updatedTasks, task)
+		}
+	}
+	saveTasks(updatedTasks)
 	panic("unimplemented")
 }
