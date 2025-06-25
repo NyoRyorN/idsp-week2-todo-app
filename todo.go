@@ -50,7 +50,11 @@ func nextID(tasks []Task) int {
 }
 
 func AddTask(title string) {
-	panic("unimplemented")
+	temp_tasks, _ := loadTasks()
+	last_id := nextID(temp_tasks)
+	new_task := Task{ID:last_id, Title:title, Done:false}
+	temp_tasks = append(temp_tasks, new_task)
+	_ = saveTasks(temp_tasks)
 }
 
 func ListTasks() {
