@@ -76,9 +76,9 @@ func CompleteTask(id int) {
 		return
 	}
 	// tasks = append(tasks, t1)
-	for _, task := range tasks {
-		if task.ID == id {
-			task.Done = true
+	for i:=0; i<len(tasks); i++ {
+		if tasks[i].ID == id {
+			tasks[i].Done = true
 			break
 		}
 	}
