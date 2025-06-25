@@ -71,11 +71,11 @@ func ListTasks() {
 
 func CompleteTask(id int) {
 	tasks, err := loadTasks()
-	if err == nil {
+	if err != nil {
 		fmt.Println("Error loading tasks:", err)
 		return
 	}
-	tasks = append(tasks, t1)
+	// tasks = append(tasks, t1)
 	for _, task := range tasks {
 		if task.ID == id {
 			task.Done = true
@@ -83,14 +83,14 @@ func CompleteTask(id int) {
 		}
 	}
 	fmt.Println("Task completed:", id)
-	saveTasks(tasks)
+	_ = saveTasks(tasks)
 	// panic("unimplemented")
 }
 
 func DeleteTask(id int) {
 	var updatedTasks []Task
 	tasks, err := loadTasks()
-	if err == nil {
+	if err != nil {
 		fmt.Println("Error loading tasks:", err)
 		return
 	}
