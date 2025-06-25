@@ -84,7 +84,7 @@ func CompleteTask(id int) {
 	}
 	fmt.Println("Task completed:", id)
 	saveTasks(tasks)
-	panic("unimplemented")
+	// panic("unimplemented")
 }
 
 func DeleteTask(id int) {
@@ -100,5 +100,5 @@ func DeleteTask(id int) {
 		}
 	}
 	saveTasks(updatedTasks)
-	panic("unimplemented")
+	// panic("unimplemented")
 }
