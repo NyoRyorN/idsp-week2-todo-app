@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"fmt"
 )
 
 type Task struct {
@@ -50,11 +51,22 @@ func nextID(tasks []Task) int {
 }
 
 func AddTask(title string) {
-	panic("unimplemented")
+	temp_tasks, _ := loadTasks()
+	last_id := nextID(temp_tasks)
+	new_task := Task{ID:last_id, Title:title, Done:false}
+	temp_tasks = append(temp_tasks, new_task)
+	_ = saveTasks(temp_tasks)
 }
 
 func ListTasks() {
-	panic("unimplemented")
+	temp_tasks, _ := loadTasks()
+	for i:=0; i<len(temp_tasks); i++ {
+		done := " "
+		if temp_tasks[i].Done {
+			done = "x"
+		}
+		fmt.Printf("%d: %s [%s] \n", temp_tasks[i].ID, temp_tasks[i].Title, done)
+	}
 }
 
 func CompleteTask(id int) {
